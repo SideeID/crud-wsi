@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Sep 2023 pada 03.42
--- Versi server: 10.4.27-MariaDB
--- Versi PHP: 8.1.12
+-- Generation Time: Sep 22, 2023 at 10:40 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `user`
+-- Database: `wsi`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `level_detail`
+-- Table structure for table `level_detail`
 --
 
 CREATE TABLE `level_detail` (
@@ -32,10 +32,18 @@ CREATE TABLE `level_detail` (
   `level` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `level_detail`
+--
+
+INSERT INTO `level_detail` (`id_level`, `level`) VALUES
+(1, '1'),
+(2, '2');
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_detail`
+-- Table structure for table `user_detail`
 --
 
 CREATE TABLE `user_detail` (
@@ -47,31 +55,55 @@ CREATE TABLE `user_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `user_detail`
+--
+
+INSERT INTO `user_detail` (`id`, `user_email`, `user_password`, `user_fullname`, `level`) VALUES
+(1, 'admin@gmail.com', 'admin', 'dimas anjay mabar', 1),
+(2, 'dimas@gmail.com', 'dimas', 'dimss', 2);
+
+--
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `level_detail`
+-- Indexes for table `level_detail`
 --
 ALTER TABLE `level_detail`
   ADD PRIMARY KEY (`id_level`);
 
 --
--- Indeks untuk tabel `user_detail`
+-- Indexes for table `user_detail`
 --
 ALTER TABLE `user_detail`
   ADD PRIMARY KEY (`id`),
   ADD KEY `level` (`level`);
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `user_detail`
+-- AUTO_INCREMENT for table `level_detail`
+--
+ALTER TABLE `level_detail`
+  MODIFY `id_level` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `user_detail`
 --
 ALTER TABLE `user_detail`
-  ADD CONSTRAINT `user_detail_ibfk_1` FOREIGN KEY (`level`) REFERENCES `level_detail` (`id_level`);
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `user_detail`
+--
+ALTER TABLE `user_detail`
+  ADD CONSTRAINT `user_detail_ibfk_1` FOREIGN KEY (`level`) REFERENCES `level_detail` (`id_level`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
